@@ -64,7 +64,7 @@ export default function AdvancedAnimatedImage({ imageUrl }) {
         <Canvas camera={{ position: [0, 0, 5], fov: 100 }}>
             <ambientLight intensity={0.9} />
             <pointLight position={[10, 10, 10]} />
-            <ImagePlane imageUrl={imageUrl} />
+            {/* <ImagePlane imageUrl={imageUrl} /> */}
             <Stars />
             <OrbitControls enableZoom={false} />
         </Canvas>
