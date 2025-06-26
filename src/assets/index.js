@@ -21,6 +21,9 @@ import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
 
+import ATandT from "./ATandT.jpeg";
+import dell from "./dell.png";
+import boston from "./boston.jpeg";
 
 
 import carrent from "./carrent.png";
@@ -50,4 +53,7 @@ export {
   threejs,
   carrent,
   jobit,
-};
+  ATandT
+
+  , dell,
+  boston,};

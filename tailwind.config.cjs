@@ -21,6 +21,27 @@ module.exports = {
       backgroundImage: {
         "hero-pattern": "url('/src/assets/herobg.png')",
       },
+      animation: {
+        fadeIn: "fadeIn 2s ease-out forwards",
+        crawl: "crawl 20s linear forwards",
+        pulseSlow: "pulse 4s ease-in-out infinite",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: 0, transform: "translateY(20px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+        crawl: {
+          "0%": {
+            transform: "translateZ(0) rotateX(20deg) translateY(100%)",
+            opacity: 1,
+          },
+          "100%": {
+            transform: "translateZ(-300px) rotateX(25deg) translateY(-200%)",
+            opacity: 0,
+          },
+        },
+      },
     },
   },
   plugins: [],

@@ -17,6 +17,9 @@ import {
   carrent,
   jobit,
   threejs,
+  ATandT,
+  dell,
+  boston,
 } from "../assets";
 
 export const navLinks = [
@@ -107,43 +110,55 @@ const technologies = [
 
 const experiences = [
   {
-    title: "UI Developer - { React.js Developer }",
-    company_name: "Eunimart",
+    title: "SDE 2 - Senior Frontend Developer",
+    company_name: "AT&T",
     position:"Team Lead",
     iconBg: "#E6DEDD",
-    date: "January 2023 - June 2023",
+    image: ATandT,
+    date: "June 2023 - present",
     points: [
-      "Responsible for creating a UI Engine that consolidates all accessible components within a single application, enabling the utilization of reusable components through remote access instead of duplicating code across various applications in React.",
-      "Writing efficient, reusable and well-documented code using the latest frontend techniques to build cross-platform interfaces, working closely with designers and developers.",
-      "Reviewing pull requests and providing constructive feedback on code design and implementation.",
-      "Ensuring that front-end developers working in separate teams can effectively collaborate, and benefit from each others' experiences and techniques. Contributing to team activities forming part of the Agile product development process (e.g Planning sessions, product demos, and retrospectives).",
-      "Participating in discussions with internal stakeholders and team members about technical good practices, and helping the team identify optimal solutions"
-    ],
+  "Led the development of modular UI Engine using React.js and Webpack Module Federation to centralize and expose shared components across applications.",
+  "Built high-performance React applications using Vite.js, leveraging its fast bundling and hot module replacement.",
+  "Refactored legacy UI components to align with AT&T’s design system, improving usability and reducing maintenance complexity.",
+  "Implemented micro-frontend architecture supporting independent deployment, improving code maintainability and release flexibility.",
+  "Collaborated with designers and backend teams to build scalable and reusable components that improved turnaround by 35%.",
+  "Applied React patterns like Hooks, Context API, and HOCs, and integrated RESTful and GraphQL APIs for dynamic data rendering."
+],
+
   },
   {
-    title: "UI Developer - { React.js , Angular , Flutter }",
-    company_name: "Eunimart",
+    title: "Frontend Engineer",
+    company_name: "Dell",
     position:"Software Developer",
     iconBg: "#E6DEDD",
+    image: dell,
     date: "Oct 2020 - Dec 2022",
     points: [
+  "Built scalable and reusable frontend components using Angular and React.js, with custom hooks, services, and directives.",
+  "Styled responsive UIs using Tailwind CSS and Material UI to ensure consistent and accessible cross-device layouts.",
+  "Led a team of 5 developers in Agile sprints, integrating CI/CD with GitHub Actions and Jenkins for faster deployments.",
+  "Utilized AWS services like EC2, S3, Lambda, and RDS to scale features securely and efficiently in the cloud.",
+  "Developed cross-platform mobile apps with Flutter, integrating third-party libraries and native features seamlessly.",
+  "Implemented lazy loading, dynamic rendering, React Suspense, and modular architecture for performance optimization."
+],
 
-      "Responsible for Building Supply Chain Management System Modules and Integration with API's",
-      "Building reusable components, Modules, Directives and Pipes",
-      "Responsible for Developing Dynamic forms and Tables using angular material Responsible for Building Local warehouse and vendor management system",
-      "Built supply chain management application (android and ios) using Flutter Responsible for integrating APIs for E-commerce platforms for managing orders, shipments and Payments",
-      "Worked on platform which deals with API integration using type script. Mentoring team of 2 members for development of Supply chain management solutions"
-    ],
   },
   {
-    title: "UI Developer - { Angular }",
-    company_name: "Eunimart",
+    title: "UI Developer",
+    company_name: "Boston Scientific",
     position:"Software Developer Intern",
     iconBg: "#E6DEDD",
+    image: boston,
     date: "Feb 2020 - Sep 2020",
-    points: [
-      "Responsible for Building Retail module which consists products and orders", "Used programming capabilities in JavaScript and Angular libraries", "Strong experience and skills in API integration",
-    ],
+   points: [
+  "Contributed to UI development using React, Angular, and Next.js with scalable and maintainable design patterns.",
+  "Designed dynamic, cross-browser pages using HTML5, CSS3, jQuery, Bootstrap, AngularJS, and modern JavaScript.",
+  "Built forms and data views using Angular 2.0’s template and reactive forms, integrating with REST APIs and validation.",
+  "Leveraged Next.js features like SSR and SSG to optimize SEO and performance for medical application tools.",
+  "Managed state and side effects using Redux Toolkit, React Context, and RxJS to ensure consistent data flow.",
+  "Worked closely with QA to fix bugs, resolve production issues, and build pixel-perfect UI from wireframes and Figma."
+],
+
   },
   
 ];
@@ -200,7 +215,8 @@ const projects = [
   {
     name: "SkillMentor: Elevating Interview Success and Beyond",
     description:
-      "Introducing our comprehensive interview preparation platform that bridges the gap between students and colleges. Students can enhance their skills through real interview experiences, receive detailed feedback, and track their progress. College admins have a powerful tool at their disposal, allowing them to monitor and mentor students effectively, ensuring their success in both soft and hard skills.",
+      "Our interview prep platform connects students and colleges. Students gain real interview experience, get detailed feedback, and track progress. College admins can monitor and guide student performance effectively, helping them build both soft and hard skills for career success through structured mentoring and skill development tools.",
+
     tags: [
       {
         name: "reactjs",
