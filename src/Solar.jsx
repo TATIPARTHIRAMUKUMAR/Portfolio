@@ -4,10 +4,10 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Html } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { styles } from './styles';
-import AdvancedAnimatedImage from './components/canvas/Image';
-import ig from './assets/me.jpeg';
-import ProfileSphere from './ProfileSphere'; // add this import
-import profileImage from './assets/profile.jpeg'; // adjust path if needed
+// import AdvancedAnimatedImage from './components/canvas/Image';
+// import ig from './assets/me.jpeg';
+// import ProfileSphere from './ProfileSphere'; // add this import
+// import profileImage from './assets/profile.jpeg'; // adjust path if needed
 import { Stars } from '@react-three/drei';
 
 const TechPlanet = ({ size, distance, color, speed, label }) => {
