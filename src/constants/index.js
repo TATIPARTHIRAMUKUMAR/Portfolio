@@ -132,7 +132,7 @@ const experiences = [
     position:"Software Developer",
     iconBg: "#E6DEDD",
     image: dell,
-    date: "Oct 2020 - Dec 2022",
+    date: "Dec 2020 - Aug 2023",
     points: [
   "Built scalable and reusable frontend components using Angular and React.js, with custom hooks, services, and directives.",
   "Styled responsive UIs using Tailwind CSS and Material UI to ensure consistent and accessible cross-device layouts.",
@@ -149,7 +149,7 @@ const experiences = [
     position:"Software Developer Intern",
     iconBg: "#E6DEDD",
     image: boston,
-    date: "Feb 2020 - Sep 2020",
+    date: "Jan 2019 - Dec 2020",
    points: [
   "Contributed to UI development using React, Angular, and Next.js with scalable and maintainable design patterns.",
   "Designed dynamic, cross-browser pages using HTML5, CSS3, jQuery, Bootstrap, AngularJS, and modern JavaScript.",
