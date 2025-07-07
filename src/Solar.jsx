@@ -163,7 +163,7 @@ const SolarSystemCanvas = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setEventIndex((prev) => (prev + 1) % eventNames.length);
-        }, 10000);
+        }, 5000);
         return () => clearInterval(interval);
     }, []);
 
