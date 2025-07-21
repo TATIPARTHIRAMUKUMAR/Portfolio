@@ -202,3 +202,17 @@
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
   }
 }
+
+
+
+@keyframes pulseText {
+    0% {
+        opacity: 0.85;
+        text-shadow: 0 0 20px #ffaa00, 0 0 30px #ffcc00;
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 40px #fff700, 0 0 60px #ffd900;
+    }
+}
+

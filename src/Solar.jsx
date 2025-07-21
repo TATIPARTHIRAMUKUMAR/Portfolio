@@ -13,11 +13,11 @@ const TechPlanet = ({ size, distance, color, speed, label, eventIndex, index }) 
         const t = clock.getElapsedTime() * speed;
 
         switch (eventIndex) {
+            // case 0:
+            //     ref.current.position.x = 0;
+            //     ref.current.position.z = distance * (index % 2 === 0 ? 1 : -1);
+            //     break;
             case 0:
-                ref.current.position.x = 0;
-                ref.current.position.z = distance * (index % 2 === 0 ? 1 : -1);
-                break;
-            case 1:
                 if (index < 2) {
                     ref.current.position.x = 5;
                     ref.current.position.z = 5;
@@ -26,7 +26,7 @@ const TechPlanet = ({ size, distance, color, speed, label, eventIndex, index }) 
                     ref.current.position.z = Math.cos(t) * distance;
                 }
                 break;
-            case 9:
+            case 8:
                 break;
             default:
                 ref.current.position.x = Math.sin(t) * distance;
@@ -82,7 +82,7 @@ const OrbitRing = ({ radius }) => {
 
 const EventVisuals = ({ eventIndex }) => {
     switch (eventIndex) {
-        case 2:
+        case 1:
             return (
                 <group>
                     {[...Array(40)].map((_, i) => (
@@ -93,21 +93,21 @@ const EventVisuals = ({ eventIndex }) => {
                     ))}
                 </group>
             );
-        case 3:
+        case 2:
             return (
                 <mesh>
                     <sphereGeometry args={[10, 64, 64]} />
                     <meshStandardMaterial color="#ffcc00" emissive="#ffff99" emissiveIntensity={5} transparent opacity={0.6} />
                 </mesh>
             );
-        case 4:
+        case 3:
             return (
                 <mesh>
                     <planeGeometry args={[300, 300]} />
                     <meshBasicMaterial color="black" transparent opacity={0.5} />
                 </mesh>
             );
-        case 5:
+        case 4:
             return (
                 <group>
                     <Float floatIntensity={2} rotationIntensity={2}>
@@ -115,7 +115,7 @@ const EventVisuals = ({ eventIndex }) => {
                     </Float>
                 </group>
             );
-        case 6:
+        case 5:
             return (
                 <group>
                     {[...Array(3)].map((_, i) => (
@@ -126,29 +126,155 @@ const EventVisuals = ({ eventIndex }) => {
                     ))}
                 </group>
             );
-        case 7:
+        case 6:
             return (
                 <Float floatIntensity={1}>
                     <Sparkles count={300} scale={[80, 80, 80]} speed={1} size={6} color="#ff66cc" />
                 </Float>
             );
-        case 8:
+        case 7: // 🧿 Wormhole Pulse
             return (
-                <mesh position={[0, 0, -40]}>
-                    <torusKnotGeometry args={[10, 2, 100, 16]} />
-                    <meshStandardMaterial color="#00ffff" emissive="#0033ff" wireframe />
-                </mesh>
+                <group position={[0, 0, 0]}>
+                    {/* Fading spiral cone */}
+                    <mesh rotation={[-Math.PI / 2, 0, 0]}>
+                        <coneGeometry args={[20, 60, 64, 1, true]} />
+                        <meshStandardMaterial
+                            color="#00ffff"
+                            transparent
+                            opacity={0.15}
+                            emissive="#0033ff"
+                            wireframe={true}
+                            side={2}
+                        />
+                    </mesh>
+
+                    {/* Floating light sphere in middle of vortex */}
+                    <Float floatIntensity={2} speed={1.5}>
+                        <mesh>
+                            <sphereGeometry args={[2, 32, 32]} />
+                            <meshStandardMaterial color="#ffffff" emissive="#00ccff" emissiveIntensity={4} />
+                        </mesh>
+                    </Float>
+
+                    {/* Swirling sparkles */}
+                    <Sparkles count={200} scale={[30, 60, 30]} speed={2} size={3} color="#00ffff" />
+                </group>
             );
+
         default:
             return null;
     }
 };
 
-const SolarSystemCanvas = () => {
-    const [eventIndex, setEventIndex] = useState(0);
 
+const SolarSystemCanvas = ({ eventIndex }) => {
+    // const [eventIndex, setEventIndex] = useState(0);
+
+    // const eventNames = [
+    //     // "🌌 Planetary Alignment",
+    //     "🌠 Twin Conjunction",
+    //     "☄️ Meteor Storm Surge",
+    //     "🌞 Hyper Solar Flare",
+    //     "🌑 Full Lunar Veil",
+    //     "🌀 Gravitational Twist",
+    //     "🛸 Alien Signal Burst",
+    //     "🌈 Nebula Bloom",
+    //     "🧿 Wormhole Pulse",
+    //     "🛰️ Orbit Freeze"
+    // ];
+
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setEventIndex((prev) => (prev + 1) % eventNames.length);
+    //     }, 5000);
+    //     return () => clearInterval(interval);
+    // }, []);
+
+    const techStack = [
+        { label: 'React', color: '#61dafb', size: 2, distance: 10, speed: 0.3 },
+        { label: 'Next', color: '#ffffff', size: 1.9, distance: 14, speed: 0.19 },
+        { label: 'JS', color: '#f7df1e', size: 1.8, distance: 18, speed: 0.25 },
+        { label: 'TS', color: '#3178c6', size: 1.8, distance: 22, speed: 0.19 },
+        { label: 'Python', color: '#38bdf8', size: 1.9, distance: 26, speed: 0.2 },
+        { label: 'NodeJs', color: '#764abc', size: 1.8, distance: 30, speed: 0.11 },
+        { label: 'GraphQL', color: '#e34c26', size: 1.7, distance: 34, speed: 0.15 },
+        { label: 'Vite', color: '#264de4', size: 1.7, distance: 38, speed: 0.18 },
+        { label: 'Azure', color: '#f05032', size: 1.8, distance: 42, speed: 0.13 },
+        { label: 'AWS', color: '#646cff', size: 1.7, distance: 46, speed: 0.12 },
+    ];
+
+    return (
+        <Canvas camera={{ position: [0, 20, 80], fov: 45 }} shadows>
+            <Stars radius={120} depth={70} count={7000} factor={8} saturation={20} fade speed={2} />
+
+            <ambientLight intensity={0.7} />
+            <pointLight position={[0, 0, 0]} intensity={4} color="#ffffcc" castShadow />
+            {/* Original Glowing Sun */}
+            <group>
+                {/* Subtle Sun - faded visual anchor */}
+                <mesh>
+                    <sphereGeometry args={[6, 64, 64]} />
+                    <meshStandardMaterial
+                        color="#ffcc00"
+                        emissive="#ffe066"
+                        emissiveIntensity={0.3} // low glow
+                        transparent
+                        opacity={0.4} // super subtle
+                    />
+                </mesh>
+
+                {/* MY SKILL SET - Glowing core text inside the Sun */}
+                <Html
+                    position={[0, 0, 0]}
+                    distanceFactor={8}
+                    center
+                    style={{
+                        transform: 'translate(-50%, -50%)', // this centers the div around the sphere
+                        fontSize: '140px',
+                        fontWeight: '900',
+                        color: '#ffe066',
+                        fontFamily: 'Orbitron, sans-serif',
+                        textTransform: 'uppercase',
+                        letterSpacing: '2px',
+                        textAlign: 'center',
+                        textShadow: '0 0 30px #ffaa00, 0 0 60px #ffcc00',
+                        animation: 'pulseText 3s ease-in-out infinite alternate',
+                        pointerEvents: 'none',
+                        lineHeight: 1,
+                    }}
+                >
+                    MY SKILL SET
+                </Html>
+
+            </group>
+
+
+
+
+
+
+
+            <EventVisuals eventIndex={eventIndex} />
+
+            {techStack.map((tech, index) => (
+                <React.Fragment key={index}>
+                    <OrbitRing radius={tech.distance} />
+                    <TechPlanet {...tech} eventIndex={eventIndex} index={index} />
+                </React.Fragment>
+            ))}
+
+            <OrbitControls autoRotate autoRotateSpeed={0.25} enableZoom={false} enablePan={false} />
+        </Canvas>
+    );
+};
+
+
+
+export default function SolarSystem() {
+
+
+    const [eventIndex, setEventIndex] = useState(0);
     const eventNames = [
-        "🌌 Planetary Alignment",
         "🌠 Twin Conjunction",
         "☄️ Meteor Storm Surge",
         "🌞 Hyper Solar Flare",
@@ -167,88 +293,89 @@ const SolarSystemCanvas = () => {
         return () => clearInterval(interval);
     }, []);
 
-    const techStack = [
-        { label: 'React', color: '#61dafb', size: 2, distance: 10, speed: 0.3 },
-        { label: 'Next', color: '#ffffff', size: 1.9, distance: 14, speed: 0.19 },
-        { label: 'JS', color: '#f7df1e', size: 1.8, distance: 18, speed: 0.25 },
-        { label: 'TS', color: '#3178c6', size: 1.8, distance: 22, speed: 0.19 },
-        { label: 'Tailwind', color: '#38bdf8', size: 1.9, distance: 26, speed: 0.2 },
-        { label: 'Redux', color: '#764abc', size: 1.8, distance: 30, speed: 0.11 },
-        { label: 'HTML', color: '#e34c26', size: 1.7, distance: 34, speed: 0.15 },
-        { label: 'CSS', color: '#264de4', size: 1.7, distance: 38, speed: 0.18 },
-        { label: 'Git', color: '#f05032', size: 1.8, distance: 42, speed: 0.13 },
-        { label: 'Vite', color: '#646cff', size: 1.7, distance: 46, speed: 0.12 },
-    ];
 
-    return (
-        <Canvas camera={{ position: [0, 20, 80], fov: 45 }} shadows>
-            <Stars radius={120} depth={70} count={7000} factor={8} saturation={20} fade speed={2} />
-            <ambientLight intensity={0.7} />
-            <pointLight position={[0, 0, 0]} intensity={4} color="#ffffcc" castShadow />
-            <mesh>
-                <sphereGeometry args={[6, 64, 64]} />
-                <meshStandardMaterial emissive="#ffe066" emissiveIntensity={3} color="#ffcc00" />
-            </mesh>
 
-            <Html
-                position={[30, 30, 0]}
-                distanceFactor={50}
-                style={{
-                    position: 'absolute',
-                    right: 30,
-                    top: 30,
-                    background: 'radial-gradient(circle at top left, rgba(75,0,130,0.7), rgba(0,0,50,0.9))',
-                    padding: '16px 36px',
-                    borderRadius: '18px',
-                    color: '#F0F8FF',
-                    fontSize: '22px',
-                    fontFamily: 'Orbitron, sans-serif',
-                    fontWeight: '700',
-                    border: '2px solid #7F00FF',
-                    boxShadow: '0 0 20px #7F00FF',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1.5px',
-                    backdropFilter: 'blur(8px)',
-                    animation: 'pulse 2s infinite'
-                }}
-            >
-                ⚡ Cosmic Event: {eventNames[eventIndex]}
-            </Html>
+    const fullText = "Building scalable, user-focused applications across the full stack.";
+    const [displayedText, setDisplayedText] = useState("");
 
-            <EventVisuals eventIndex={eventIndex} />
+    useEffect(() => {
+        let i = 0;
+        const interval = setInterval(() => {
+            setDisplayedText(fullText.slice(0, i));
+            i++;
+            if (i > fullText.length) clearInterval(interval);
+        }, 50);
+        return () => clearInterval(interval);
+    }, []);
 
-            {techStack.map((tech, index) => (
-                <React.Fragment key={index}>
-                    <OrbitRing radius={tech.distance} />
-                    <TechPlanet {...tech} eventIndex={eventIndex} index={index} />
-                </React.Fragment>
-            ))}
 
-            <OrbitControls autoRotate autoRotateSpeed={0.25} enableZoom={false} enablePan={false} />
-        </Canvas>
-    );
-};
-
-export default function SolarSystem() {
     return (
         <section className="relative w-full h-screen mx-auto bg-gradient-to-b from-black via-gray-900 to-black text-white overflow-hidden">
-            <div className={`absolute inset-0 top-[20px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}>
-                <div className="flex flex-col justify-center items-center mt-5">
-                    <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
-                    <div className="w-1 sm:h-80 h-40 violet-gradient" />
+            <div className="absolute bottom-10 right-10 z-20">
+                <div className="bg-black/60 backdrop-blur-md border border-cyan-400 text-cyan-100 px-6 py-3 rounded-lg shadow-lg font-orbitron text-xs sm:text-sm md:text-base tracking-wider uppercase">
+                    ⚡ Cosmic Event: <span className="text-white">{eventNames[eventIndex]}</span>
                 </div>
-                <div>
-                    <h1 className={`${styles.heroHeadText} text-white`}>Hi, I'm <span className="text-[#915EFF]">Ramukumar</span></h1>
-                    <p className={`${styles.heroSubText} text-white-100`}>I develop user interfaces and web applications</p>
-                    <p className="text-[16px] md:text-15px text-[#b0b0b0] mt-2">
-                        This space maps my experience — from launches to milestones across tech galaxies.
+            </div>
+            <div className={`absolute inset-0 top-[20px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}>
+                <div className="relative flex flex-col justify-center items-center mt-25">
+                    {/* Pulsing Glow behind Dot */}
+                    <motion.div
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: [0, 1.5], opacity: [0.8, 0] }}
+                        transition={{
+                            duration: 1.5,
+                            delay: 0.5,
+                            repeat: Infinity,
+                            repeatType: 'loop',
+                            ease: 'easeInOut'
+                        }}
+                        className="absolute w-10 h-10 rounded-full bg-[#915EFF] opacity-50 blur-2xl"
+                    />
+
+                    {/* Central Dot */}
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="z-10 w-5 h-5 rounded-full bg-[#915EFF]"
+                    />
+
+                    {/* Laser Beam */}
+                    <div className="w-1 mt-2 overflow-hidden">
+                        <motion.div
+                            initial={{ height: 0 }}
+                            animate={{ height: 320 }}
+                            transition={{ duration: 1, delay: 0.5 }}
+                            className="w-1 bg-gradient-to-b from-[#915EFF] via-purple-500 to-transparent animate-pulse"
+                        />
+                    </div>
+                </div>
+
+
+                <div className="flex flex-col gap-6 mt-5">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white bg-gradient-to-r from-[#7f5af0] via-[#ff6ac1] to-[#ffd400] bg-clip-text text-transparent tracking-tight drop-shadow-lg animate-fadeIn">
+                        I’m Ramukumar, Full Stack Developer
+                    </h1>
+
+
+
+
+
+
+                    {/* Typewriter Effect Text */}
+                    <p className="text-[18px] sm:text-xl md:text-2xl font-mono text-white/90 max-w-3xl border-l-4 border-purple-500 pl-4 animate-pulse">
+                        {displayedText}
+                        <span className="text-purple-400">|</span>
                     </p>
                 </div>
+
+
+
             </div>
             <div className="w-full h-[800px] md:h-[720px]">
-                <SolarSystemCanvas />
+                <SolarSystemCanvas eventIndex={eventIndex} />
             </div>
-            <div className="flex gap-6 mb-6 justify-center z-10 relative">
+            <div className="flex gap-6 mb-6 justify-start z-10 relative pl-10">
                 <a
                     href="/Resume.pdf"
                     download
@@ -263,6 +390,7 @@ export default function SolarSystem() {
                     View My Work
                 </a>
             </div>
+
             <div className="absolute bottom-10 w-full flex justify-center items-center z-10">
                 <a href="#about">
                     <motion.div
@@ -275,6 +403,7 @@ export default function SolarSystem() {
                     </motion.div>
                 </a>
             </div>
+
         </section>
     );
 }

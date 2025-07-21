@@ -42,6 +42,10 @@ const services = [
     title: "UI Developer",
     icon: web,
   },
+   {
+    title: "Backend Developer",
+    icon: backend,
+  },
   {
     title: "Web Developer",
     icon: creator,
@@ -50,10 +54,7 @@ const services = [
     title: "Flutter Developer",
     icon: mobile,
   },
-  {
-    title: "Backend Developer",
-    icon: backend,
-  },
+ 
 
 ];
 
