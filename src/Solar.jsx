@@ -80,19 +80,59 @@ const OrbitRing = ({ radius }) => {
     );
 };
 
+const Meteor = ({ startX, startZ, speed }) => {
+    const ref = useRef();
+    const [y, setY] = useState(50);
+
+    useFrame(() => {
+        if (!ref.current) return;
+        setY((prev) => {
+            const newY = prev - speed;
+            if (newY < -10) return 50;
+            return newY;
+        });
+
+        ref.current.position.set(startX, y, startZ);
+        ref.current.rotation.x += 0.1;
+        ref.current.rotation.y += 0.05;
+    });
+
+    return (
+        <group ref={ref}>
+            {/* Meteor head */}
+            <mesh>
+                <sphereGeometry args={[0.5, 16, 16]} />
+                <meshStandardMaterial color="#ffa500" emissive="#ff4500" emissiveIntensity={2} />
+            </mesh>
+
+            {/* Meteor trail */}
+            <mesh position={[0, 0.8, 0]} rotation={[Math.PI / 2, 0, 0]}>
+                <cylinderGeometry args={[0.05, 0.3, 1.5, 8]} />
+                <meshStandardMaterial color="#ff6347" transparent opacity={0.6} />
+            </mesh>
+        </group>
+    );
+};
+
+
 const EventVisuals = ({ eventIndex }) => {
     switch (eventIndex) {
-        case 1:
+        case 1: // ☄️ Meteor Storm Surge
             return (
                 <group>
-                    {[...Array(40)].map((_, i) => (
-                        <mesh key={i} position={[Math.random() * 100 - 50, 30, Math.random() * 100 - 50]}>
-                            <sphereGeometry args={[0.25, 8, 8]} />
-                            <meshStandardMaterial color="white" emissive="cyan" />
-                        </mesh>
-                    ))}
+                    {[...Array(30)].map((_, i) => {
+                        const startX = Math.random() * 100 - 50;
+                        const startZ = Math.random() * 100 - 50;
+                        const speed = 0.2 + Math.random() * 0.3;
+
+                        return (
+                            <Meteor key={i} startX={startX} startZ={startZ} speed={speed} />
+                        );
+                    })}
                 </group>
             );
+
+
         case 2:
             return (
                 <mesh>
@@ -289,7 +329,7 @@ export default function SolarSystem() {
     useEffect(() => {
         const interval = setInterval(() => {
             setEventIndex((prev) => (prev + 1) % eventNames.length);
-        }, 5000);
+        }, 7000);
         return () => clearInterval(interval);
     }, []);
 
@@ -316,40 +356,44 @@ export default function SolarSystem() {
                     ⚡ Cosmic Event: <span className="text-white">{eventNames[eventIndex]}</span>
                 </div>
             </div>
-            <div className={`absolute inset-0 top-[20px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}>
-                <div className="relative flex flex-col justify-center items-center mt-25">
-                    {/* Pulsing Glow behind Dot */}
+            <div className={`absolute inset-0 top-[20px] max-w-10xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}>
+                {/* <div className="relative flex flex-col items-center justify-center h-[400px]">
                     <motion.div
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: [0, 1.5], opacity: [0.8, 0] }}
-                        transition={{
-                            duration: 1.5,
-                            delay: 0.5,
-                            repeat: Infinity,
-                            repeatType: 'loop',
-                            ease: 'easeInOut'
-                        }}
-                        className="absolute w-10 h-10 rounded-full bg-[#915EFF] opacity-50 blur-2xl"
+                        animate={{ scale: [1, 1.1, 1] }}
+                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                        className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 via-indigo-500 to-pink-500 shadow-2xl z-20"
                     />
 
-                    {/* Central Dot */}
                     <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="z-10 w-5 h-5 rounded-full bg-[#915EFF]"
+                        animate={{ rotate: 360 }}
+                        transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
+                        className="absolute w-32 h-32 border border-purple-400 rounded-full z-10"
                     />
 
-                    {/* Laser Beam */}
-                    <div className="w-1 mt-2 overflow-hidden">
-                        <motion.div
-                            initial={{ height: 0 }}
-                            animate={{ height: 320 }}
-                            transition={{ duration: 1, delay: 0.5 }}
-                            className="w-1 bg-gradient-to-b from-[#915EFF] via-purple-500 to-transparent animate-pulse"
-                        />
+                    <div className="absolute flex flex-col gap-1 mt-20">
+                        {[...Array(5)].map((_, i) => (
+                            <motion.div
+                                key={i}
+                                animate={{ height: [0, 40, 0], opacity: [0.4, 1, 0] }}
+                                transition={{
+                                    duration: 2,
+                                    delay: i * 0.3,
+                                    repeat: Infinity,
+                                    repeatType: "loop",
+                                    ease: "easeInOut"
+                                }}
+                                className="w-[2px] bg-gradient-to-b from-purple-500 to-transparent mx-auto"
+                            />
+                        ))}
                     </div>
-                </div>
+
+                    <div className="absolute top-0 text-xs font-mono text-purple-300 opacity-60 select-none animate-pulse">
+                        INIT :: CORE-LINK :: READY
+                    </div>
+                </div> */}
+
+
+
 
 
                 <div className="flex flex-col gap-6 mt-5">
