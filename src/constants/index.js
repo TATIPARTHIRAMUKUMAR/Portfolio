@@ -111,7 +111,7 @@ const technologies = [
 
 const experiences = [
   {
-    title: "SDE 2 - Senior FullStack Developer",
+    title: "SDE 2 - Senior Frontend Developer",
     company_name: "AT&T",
     position:"Team Lead",
     iconBg: "#E6DEDD",
@@ -128,7 +128,7 @@ const experiences = [
 
   },
   {
-    title: "Fullstack Engineer",
+    title: "Frontend Engineer",
     company_name: "Dell",
     position:"Software Developer",
     iconBg: "#E6DEDD",
@@ -145,7 +145,7 @@ const experiences = [
 
   },
   {
-    title: "UI Developer",
+    title: "Frontend Developer",
     company_name: "Boston Scientific",
     position:"Software Developer Intern",
     iconBg: "#E6DEDD",
